@@ -1,34 +1,31 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-// Uncomment this line to use console.log
-// import "hardhat/console.sol";
 
-contract Lock {
-    uint public unlockTime;
-    address payable public owner;
+contract ByMeACoffee {
 
-    event Withdrawal(uint amount, uint when);
+    // Event to emit when a Memo is created.
+    event NewMemo(
+        address indexed from,
+        uint256 timestamp,
+        string name,
+        string message
+    );
 
-    constructor(uint _unlockTime) payable {
-        require(
-            block.timestamp < _unlockTime,
-            "Unlock time should be in the future"
-        );
-
-        unlockTime = _unlockTime;
-        owner = payable(msg.sender);
+    // Memo struct.
+    struct Memo{
+        address from;
+        uint256 timestamp;
+        string name;
+        string message;
     }
 
-    function withdraw() public {
-        // Uncomment this line, and the import of "hardhat/console.sol", to print a log in your terminal
-        // console.log("Unlock time is %o and block timestamp is %o", unlockTime, block.timestamp);
+    // List of all memos received from frends.
+    Memo[] memos;
+    
 
-        require(block.timestamp >= unlockTime, "You can't withdraw yet");
-        require(msg.sender == owner, "You aren't the owner");
+    // Address of contract deployer.
 
-        emit Withdrawal(address(this).balance, block.timestamp);
+    address payable owner;
 
-        owner.transfer(address(this).balance);
-    }
 }
