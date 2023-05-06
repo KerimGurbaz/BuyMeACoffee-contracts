@@ -2,7 +2,7 @@
 pragma solidity ^0.8.9;
 
 
-contract ByMeACoffee {
+contract BuyMeACoffee {
 
     // Event to emit when a Memo is created.
     event NewMemo(
