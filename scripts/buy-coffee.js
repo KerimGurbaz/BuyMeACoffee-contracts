@@ -65,6 +65,16 @@ async function main(){
   // Withdraw funds.
   await buyMeACoffee.connect(owner).withdrawTips();
 
+  // Check balance after widthdraw.
+  console.log("== Withdraw Tips ==");
+  await printBlances(addresses);
+
+  //Read all the memos left for the owner.
+  console.log("== memos ==");
+  const memos = await buyMeACoffee.getMemos();
+  printMemos(memos);
+
+
 }
 
 main()
