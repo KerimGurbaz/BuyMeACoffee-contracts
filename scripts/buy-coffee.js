@@ -60,7 +60,10 @@ async function main(){
 
   // Check balances after coffee purchase.
   console.log(" == bought coffee == ");
-  await printBlances(addresses)
+  await printBlances(addresses);
+
+  // Withdraw funds.
+  await buyMeACoffee.connect(owner).withdrawTips();
 
 }
 
